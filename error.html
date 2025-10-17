@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404. That's an error.</title>
+    <link rel="icon" type="image/x-icon" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #353539;
+            --green-dark: #0e3521;
+            --green-medium: #006936;
+            --green-light: #5fb14c;
+            --accent-yellow: #f1ec33;
+            --green-muted: #4a7c59;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Google Sans', sans-serif;
+            background-color: white;
+            color: var(--primary-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex: 1;
+            gap: 60px;
+        }
+
+        .content {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .logo {
+            margin-bottom: 40px;
+        }
+
+        .logo-text {
+            font-size: 90px;
+            font-weight: 400;
+            letter-spacing: -5px;
+        }
+
+        .logo-g1, .logo-o1, .logo-o2, .logo-g2, .logo-l, .logo-e { 
+            color: var(--green-dark); 
+        }
+
+        .error-code {
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--green-muted);
+            max-width: 400px;
+        }
+
+        /* Updated illustration to match 612x408 aspect ratio */
+        .illustration {
+            flex-shrink: 0;
+            width: 612px;
+            height: 408px;
+        }
+
+        .robot-svg {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Added footer styles */
+        .footer {
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--green-muted);
+        }
+
+        /* Added footer links styling */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--green-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--green-medium);
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                gap: 40px;
+            }
+            
+            .illustration {
+                width: 500px;
+                height: 333px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+                padding: 30px 20px;
+            }
+
+            .logo-text {
+                font-size: 60px;
+                letter-spacing: -3px;
+            }
+
+            .illustration {
+                width: 400px;
+                height: 267px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .logo-text {
+                font-size: 50px;
+                letter-spacing: -2px;
+            }
+
+            .error-code {
+                font-size: 24px;
+            }
+
+            .illustration {
+                width: 300px;
+                height: 200px;
+            }
+
+            .footer-links {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="logo">
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                    <img src="logo.png" alt="Access Point Logo 1" style="height: 80px;">
+                    <img src="help.png" alt="Access Point Logo 2" style="height: 80px;">
+                </div>
+                <h1 class="logo-text" style="font-size: 2.5em; font-weight: 500; color: var(--green-dark); letter-spacing: -2px;">
+                    Inner Leaf
+                </h1>
+            </div>
+            
+            <h1 class="error-code">Code 404. This is an error.</h1>
+            
+            <p class="error-message">
+                Page not found. But hey, at least you found this message.
+            </p>
+        </div>
+
+        <div class="illustration">
+            <!-- Updated placeholder to match 612x408 dimensions -->
+            <img src="error.png" 
+                 alt="Robot illustration with scattered tools" 
+                 class="robot-svg" />
+        </div>
+    </div>
+
+    <!-- Updated footer with navigation links -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="ToS">Terms</a>
+            <a href="index">Home</a>
+        </div>
+        <p>&copy; 2025 Inner Leaf | IEC. All rights reserved.</p>
+    </footer>
+</body>
+</html>
