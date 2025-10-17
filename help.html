@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Sprout - Help</title>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Google Sans', sans-serif;
+            background-color: #ffffff;
+            color: #202124;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            border-bottom: 1px solid #dadce0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .logo span:first-child {
+            color: #4F8372;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background-color: #202124;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            display: flex;
+            gap: 32px;
+            padding: 0 24px;
+            border-bottom: 1px solid #dadce0;
+        }
+
+        .top-nav a {
+            padding: 16px 0;
+            text-decoration: none;
+            color: #202124;
+            font-size: 14px;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+        }
+
+        .top-nav a.active {
+            color: #4F8372;
+            border-bottom-color: #4F8372;
+        }
+
+        .top-nav a:hover {
+            color: #4F8372;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            padding: 24px 0;
+            border-right: 1px solid #dadce0;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+
+        .sidebar-section {
+            padding: 0 24px;
+            margin-bottom: 24px;
+        }
+
+        .sidebar-section h3 {
+            font-size: 12px;
+            font-weight: 500;
+            color: #5f6368;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-section a {
+            display: block;
+            padding: 12px 0;
+            text-decoration: none;
+            color: #202124;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .sidebar-section a:hover {
+            color: #4F8372;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 48px;
+        }
+
+        .content-section {
+            margin-bottom: 64px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #4F8372;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 24px;
+            line-height: 1.4;
+        }
+
+        .section-description {
+            font-size: 16px;
+            color: #5f6368;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .illustration {
+            width: 100%;
+            height: 360px;
+            background-color: transparent;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 48px;
+            color: #4F8372;
+            font-size: 14px;
+            overflow: hidden;
+        }
+
+        .illustration img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Resource cards with images on top */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .resource-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #dadce0;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .resource-card:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-card-image {
+            width: 100%;
+            height: 160px;
+            background-color: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .resource-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .resource-card-content {
+            padding: 20px;
+        }
+
+        .resource-card-content h4 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 12px;
+        }
+
+        .resource-card-content p {
+            font-size: 13px;
+            color: #5f6368;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .resource-card-content a {
+            color: #4F8372;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .resource-card-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Checkup Card */
+        .checkup-card {
+            display: flex;
+            gap: 24px;
+            padding: 24px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            margin-top: 32px;
+            border: 1px solid #dadce0;
+        }
+
+        .checkup-icon {
+            width: 100px;
+            height: 100px;
+            background-color: transparent;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .checkup-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .checkup-content h4 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 8px;
+        }
+
+        .checkup-content p {
+            font-size: 14px;
+            color: #5f6368;
+            margin-bottom: 12px;
+        }
+
+        .checkup-content a {
+            color: #4F8372;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .checkup-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Community section with visual cards */
+        .community-section {
+            margin-bottom: 64px;
+        }
+
+        .community-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        .community-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #dadce0;
+        }
+
+        .community-card-image {
+            width: 100%;
+            height: 180px;
+            background-color: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .community-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .community-card-content {
+            padding: 24px;
+        }
+
+        .community-card-content h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 12px;
+        }
+
+        .community-card-content p {
+            font-size: 14px;
+            color: #5f6368;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .community-card-content a {
+            color: #4F8372;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .community-card-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px;
+            margin-top: 48px;
+        }
+
+        .card {
+            display: flex;
+            gap: 24px;
+        }
+
+        .card-icon {
+            width: 140px;
+            height: 140px;
+            background-color: transparent;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .card-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .card-content h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 12px;
+        }
+
+        .card-content p {
+            font-size: 14px;
+            color: #5f6368;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .card-content a {
+            color: #4F8372;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .card-content a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .header-right {
+                gap: 16px;
+            }
+
+            .top-nav {
+                gap: 16px;
+                padding: 0 16px;
+                overflow-x: auto;
+            }
+
+            .top-nav a {
+                padding: 12px 0;
+                font-size: 13px;
+                white-space: nowrap;
+            }
+
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #dadce0;
+                max-height: none;
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .sidebar.active {
+                max-height: 500px;
+                padding: 24px 0;
+            }
+
+            .main-content {
+                padding: 24px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .resources-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .community-cards {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .illustration {
+                height: 200px;
+            }
+
+            .card {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .card-icon {
+                width: 100%;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <a href="/" aria-label="Wellness Hub home" style="display:inline-block;">
+            <img src="logo.png" srcset="logo@2x.png 2x, logo@3x.png 3x" alt="Wellness Hub" style="height:32px; width:auto; display:block;">
+            </a>
+        </div>
+        <div class="header-right">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <a href="#resources" class="active">Resources</a>
+        <a href="https://innerleaf.netlify.app">Community</a>
+        <a href="https://innerleaf.netlify.app/tos">Terms</a>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-section">
+                <h3>Available Resources</h3>
+                <a href="#guides" class="scroll-link">Downloadable Guides</a>
+                <a href="#hotlines" class="scroll-link">Emergency Hotlines</a>
+                <a href="#articles" class="scroll-link">Articles & Content</a>
+                <a href="#apps" class="scroll-link">Recommended Apps</a>
+                <a href="#campus" class="scroll-link">Campus Resources</a>
+                <a href="#toolkits" class="scroll-link">Self-Care Toolkits</a>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>The Open Space</h3>
+                <a href="#community" class="scroll-link">Explore Community</a>
+                <a href="#guidelines" class="scroll-link">Community Guidelines</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <div class="content-section">
+                <div class="illustration" style="height:360px;">
+                    <img src="social1.png" alt="Wellness illustration">
+                </div>
+
+                <div class="section-label">Student Wellness</div>
+                <h1 class="section-title">Your mental health matters. We're here to support your journey with resources, community, and tools for wellbeing.</h1>
+
+                <p class="section-description">
+                    Access a comprehensive collection of mental health resources designed to support your wellbeing. Whether you need immediate help, educational materials, or tools for self-care, we've gathered trusted resources to guide you.
+                </p>
+
+                <div class="checkup-card">
+                    <div class="checkup-icon">
+                        <img src="help.png" alt="Wellness checkup">
+                    </div>
+                    <div class="checkup-content">
+                        <h4>Start Your Wellness Journey</h4>
+                        <p>Take a moment to assess your current wellbeing and discover personalized resources.</p>
+                        <a href="#checkup">Begin Wellness Assessment</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Available Resources Section with visual cards -->
+            <div class="content-section">
+                <div class="section-label">Available Resources</div>
+                <h2 class="section-title">Comprehensive Support at Your Fingertips</h2>
+
+                <div class="resources-grid">
+                    <div class="resource-card" id="guides">
+                        <div class="resource-card-image">
+                            <img src="guides.png" alt="Downloadable Guides">
+                        </div>
+                        <div class="resource-card-content">
+                            <h4>Downloadable Guides</h4>
+                            <p>Free infographics, PDF guides, and worksheets on stress management, study techniques, and mindfulness exercises.</p>
+                            <a href="https://www.apa.org/ed/precollege/psn/2023/08/stress-management" target="_blank">Explore Guides</a>
+                        </div>
+                    </div>
+
+                    <div class="resource-card" id="hotlines">
+                        <div class="resource-card-image">
+                            <img src="hotlines.png" alt="Emergency Hotlines">
+                        </div>
+                        <div class="resource-card-content">
+                            <h4>Emergency Hotlines</h4>
+                            <p>24/7 mental health crisis support, suicide prevention lifelines, text-based services, and local counseling centers.</p>
+                            <a href="https://suicidepreventionlifeline.org/" target="_blank">Find Help Now</a>
+                        </div>
+                    </div>
+
+                    <div class="resource-card" id="articles">
+                        <div class="resource-card-image">
+                            <img src="books.png" alt="Articles & Content">
+                        </div>
+                        <div class="resource-card-content">
+                            <h4>Articles & Educational Content</h4>
+                            <p>Credible blogs, research-backed articles, TED talks, podcasts, and videos from trusted organizations.</p>
+                            <a href="https://www.nimh.nih.gov/health/topics" target="_blank">Read Articles</a>
+                        </div>
+                    </div>
+
+                    <div class="resource-card" id="apps">
+                        <div class="resource-card-image">
+                            <img src="books.png" alt="Recommended Apps">
+                        </div>
+                        <div class="resource-card-content">
+                            <h4>Recommended Apps</h4>
+                            <p>Meditation apps, mood tracking tools, therapy access platforms, and stress relief applications.</p>
+                            <a href="https://www.headspace.com/" target="_blank">Discover Apps</a>
+                        </div>
+                    </div>
+
+                    <div class="resource-card" id="campus">
+                        <div class="resource-card-image">
+                            <img src="campus.png" alt="Campus Resources">
+                        </div>
+                        <div class="resource-card-content">
+                            <h4>Campus Resources</h4>
+                            <p>Counseling services, student wellness programs, peer support groups, and academic accommodations.</p>
+                            <a href="https://www.aucccd.org/" target="_blank">Learn More</a>
+                        </div>
+                    </div>
+
+                    <div class="resource-card" id="toolkits">
+                        <div class="resource-card-image">
+                            <img src="selfcare.png" alt="Self-Care Toolkits">
+                        </div>
+                        <div class="resource-card-content">
+                            <h4>Self-Care Toolkits</h4>
+                            <p>Printable checklists, gratitude journals, breathing guides, and coping strategy cards for tough times.</p>
+                            <a href="https://www.mindful.org/meditation/mindfulness-getting-started/" target="_blank">Get Toolkits</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Open Space Community Section with visual cards -->
+            <div class="community-section" id="community">
+                <div class="section-label">Community</div>
+                <h2 class="section-title">The Open Space</h2>
+
+                <div class="illustration">
+                    <img src="maintenance.png" alt="Community illustration" style="width:100%; height:100%; object-fit:contain;">
+                </div>
+
+                <p class="section-description">
+                    The Open Space is your safe circle — a supportive student community where you can share stories, exchange study tips, talk about your week, or simply listen to others. This is a judgment-free zone built on empathy, respect, and mutual support.
+                </p>
+
+                <div class="community-cards">
+                    <div class="community-card">
+                        <div class="community-card-image">
+                            <img src="hero.png" alt="Peer Support">
+                        </div>
+                        <div class="community-card-content">
+                            <h3>Peer Support Threads</h3>
+                            <p>Share challenges, ask for advice, and offer encouragement to fellow students navigating similar experiences.</p>
+                        </div>
+                    </div>
+
+                    <div class="community-card">
+                        <div class="community-card-image">
+                            <img src="semester-placeholder.png" alt="Weekly Themes">
+                        </div>
+                        <div class="community-card-content">
+                            <h3>Weekly Theme Prompts</h3>
+                            <p>Engage with discussion topics that encourage reflection and connection with your wellbeing journey.</p>
+                        </div>
+                    </div>
+
+                    <div class="community-card">
+                        <div class="community-card-image">
+                            <img src="announcements.png" alt="Study Groups">
+                        </div>
+                        <div class="community-card-content">
+                            <h3>Study Accountability Groups</h3>
+                            <p>Find study partners and accountability buddies to help you stay motivated and on track with your goals.</p>
+                        </div>
+                    </div>
+
+                    <div class="community-card" id="guidelines">
+                        <div class="community-card-image">
+                            <img src="hero5.png" alt="Guidelines">
+                        </div>
+                        <div class="community-card-content">
+                            <h3>Community Guidelines</h3>
+                            <p>Our space is built on respect, empathy, and mutual support. Learn how we keep this a safe zone for everyone.</p>
+                            <a href="https://innerleaf.netlify.app/tos">Read Guidelines</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links Cards -->
+            <div class="content-section">
+                <h2 class="section-title" style="margin-top: 48px;">Get Started Today</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <img src="overview.png" srcset="overview@2x.png 2x, overview@3x.png 3x" alt="Peer support" style="width:140px; height:140px; object-fit:contain; display:block; border-radius:8px;">
+                        </div>
+                        <div class="card-content">
+                            <h3>Peer Support Network</h3>
+                            <p>Connect with fellow students navigating similar experiences and build meaningful relationships.</p>
+                            <a href="https://innerleaf.netlify.app/" target="_blank">Connect Now</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">
+                            <img src="about.png" alt="Education">
+                        </div>
+                        <div class="card-content">
+                            <h3>Wellness Education</h3>
+                            <p>Learn about mental health through interactive prompts, reflection forms, and resource sharing.</p>
+                            <a href="index">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            sidebar.classList.toggle('active');
+        });
+
+        const sidebarLinks = sidebar.querySelectorAll('.scroll-link');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                
+                hamburger.classList.remove('active');
+                sidebar.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
